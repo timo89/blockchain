@@ -73,7 +73,7 @@ class Blockchain {
 
         if (this.isBlockMined(unminedBlock)) {
             this.chain.push(unminedBlock);
-            this.difficulty = 1 + Math.round(this.chain.length / 10);
+            this.difficulty = 2 + Math.round(this.chain.length / 10);
             let reward = this.miningReward * this.pendingTransactions.length;
             this.pendingTransactions = [new Transaction('', miningRewardAddress, reward)];
             return unminedBlock;
