@@ -43,7 +43,7 @@ function mine(blockInfo) {
         block.hash = calculateHash(block);
     }
     
-    console.log("Block mined!");
+    console.log("Block mined! Nonce="+block.nonce);
 
     return block;
 }
