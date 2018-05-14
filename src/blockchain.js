@@ -13,7 +13,7 @@ class Block {
     constructor(transactions, previousHash = '') {
         this.previousHash = previousHash;
         this.transactions = transactions;
-        this.hash = null;
+        this.hash = '';
         this.nonce = 0;
     }
 }
@@ -48,7 +48,7 @@ class Blockchain {
 
 
     isBlockMined(block) {
-        return block.hash !== null && block.hash.substring(0, this.difficulty) === Array(this.difficulty + 1).join("0");
+        return block.hash !== '' && block.hash.substring(0, this.difficulty) === Array(this.difficulty + 1).join("0");
     }
 
     calculateHash(block) {
@@ -56,7 +56,7 @@ class Blockchain {
     }
 
     createGenesisBlock() {
-        let block = new Block([new Transaction(null, "Satoshi", 10000)], "0");
+        let block = new Block([new Transaction('', "Satoshi", 10000)], "0");
         let miner = new Miner(this);
         miner.mineBlock(this, block);
         this.chain = [block];
@@ -75,7 +75,7 @@ class Blockchain {
             this.chain.push(unminedBlock);
             this.difficulty = 1 + Math.round(this.chain.length / 10);
             let reward = this.miningReward * this.pendingTransactions.length;
-            this.pendingTransactions = [new Transaction(null, miningRewardAddress, reward)];
+            this.pendingTransactions = [new Transaction('', miningRewardAddress, reward)];
             return unminedBlock;
         }
         else {
