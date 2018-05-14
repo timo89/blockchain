@@ -27,7 +27,7 @@ class Miner {
     minePendingTransactions(miningRewardAddress) {
         let unminedBlock = this.blockchain.getUnminedBlock();
         this.mineBlock(this.blockchain, unminedBlock, this.blockchain.difficulty);
-        this.blockchain.addMinedBlock(unminedBlock.nonce);
+        this.blockchain.addMinedBlock(unminedBlock.nonce, miningRewardAddress);
     }
 
     mineBlock(blockchain, block) {
